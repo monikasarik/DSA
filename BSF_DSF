@@ -1,0 +1,145 @@
+#include<bits/stdc++.h>
+using namespace std;
+class queue1{
+    public:
+    int r,f;
+    int arr[20];
+    queue1()
+    {
+        r=f=-1;
+    }
+    int empty()
+    {
+        if(r==-1 && f==-1)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+
+    }
+    void insert(int p)
+    {
+        if(empty()==1)
+        {
+            r=f=0;
+            arr[r]=p;
+        }
+        else{
+            r=r+1;
+            arr[r]=p;
+        }
+        
+    }
+    int remove()
+    {
+        int temp=arr[f];
+        if(r==f)
+        {
+            r=f=-1;
+        }
+        else{
+            f=f+1;
+        }
+        return temp;
+    }
+    
+};
+class graph
+{
+	public:
+		int adj[10][10], vis[10],i,j,n;
+		graph()
+		{
+			for(i=0;i<n;i++)
+			{
+				for(j=0;j<n;j++)
+				{
+					vis[10]=0;
+				}
+			}
+		}
+		void adjmatrix()
+		{
+			int u,v,e,n;
+			cout<<"enter the no of edges:"<<endl;
+			cin>>e;
+			for(i=0;i<n;i++)
+			{
+				cout<<"enter the edge between u and v:"<<endl;
+				cin>>u>>v;
+				
+				adj[u][v]=1;
+				adj[v][u]=1;
+			}
+			for(i=0;i<n;i++){
+				for(j=0;j<n;j++){
+					cout<<adj[i][j];
+				}
+			}
+			
+		void dfs(int node){
+        cout<<node<<" ";
+        vis[node]=1;
+        
+        for(int i=0;i<edges;i++){
+            if(adj[node][i]==1 && vis[i]==0){
+                dfs(i);
+            }
+        }
+			
+			
+		}
+		void bfs(int i){
+    	queue1 q;
+    	
+    	vis[i]=1;
+    	q.insert(i);
+    	
+    	while(!q.empty()){
+    		int node=q.remove();
+			cout<<node<<" ";
+			for(int i=0;i<edges;i++){
+				if(adj[node][i]==1 && vis[i]==0){
+					vis[i]=1;
+					q.insert(i);
+				}
+			}		
+		}
+	}
+		
+};
+int main()
+{
+	graph g;
+	int ch;
+	int v;
+	cout<<"\n1.dsf using matrix \n2.dsf using matrix";
+	while(1)
+	{
+		cout<<"enter your choice:"<<endl;
+		cin>>ch;
+		switch(ch)
+		{
+			case 1:
+				g.adjmatrix();
+				cout<<"enter the vertex to call dsf:"<<endl;
+				cin>>v;
+				g.dsf(v);
+				break;
+			case 2:
+				g.adjmatrix();
+				cout<<"enter the vertex to call bsf:"<<endl;
+				cin>>v;
+				g.bsf(v);
+				break;
+			default:
+				cout<<"enter a valid choice";
+				break;
+				exit;
+		}
+	}
+	return 0;
+}
