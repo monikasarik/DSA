@@ -1,0 +1,147 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Heap
+{
+	public:
+	int heap[20],heap1[20],x,x1,n,n1,i,temp,temp1;
+    
+    Heap()
+    {
+    	heap[0]=0;  heap1[0]=0;
+	}
+/*	void getdata()
+	{
+		int ch;
+		char ans;
+		
+	
+	    
+			do{
+			
+
+			cout<<"\nDo you want to continue";
+			cin>>ans;		
+			cout<<"\nEnter choice 1. Max heap 2. Min Heap 3. Exit"<<endl;
+			cin>>ch;
+			switch(ch)
+			{
+			case 1:
+					cout<<"\nenter the marks"<<endl;
+					cin>>x;
+		    insert1(heap,x);
+		    break;
+		    case 2:
+		    	cout<<"\nenter the marks"<<endl;
+					cin>>x;
+		    insert2(heap1,x);
+		    break;
+		    case 3:
+		    	exit(0);
+		    }
+		}while(ans!='n');
+	}*/
+	void getdata()
+	{
+		cout<<"\n enter the no. of students"<<endl;
+        cin>>n1;
+   		cout<<"\n enter the marks";
+   		for(i=0;i<n1;i++)
+   		{   
+		   cin>>x;
+       
+		insert1(heap,x);
+		//insert2(heap1,x1);
+		}
+
+	}
+	void getdata2()
+	{
+		cout<<"\n enter the no. of students"<<endl;
+        cin>>n1;
+   		cout<<"\n enter the marks";
+   		for(i=0;i<n1;i++)
+   		{   
+		   cin>>x1;
+       
+	//	insert1(heap,x);
+		insert2(heap1,x1);
+		}
+
+	}
+	
+   void insert1(int heap[20],int x)
+   {
+	
+	    n=heap[0]; 
+	    heap[n+1]=x;
+	    heap[0]=n+1;
+	  
+	    upadjust1(heap,n+1);
+   }
+   void upadjust1(int heap[],int)
+   {
+   		
+   	    while(i>1&&heap[i]>heap[i/2])
+   	 	{
+   	 		
+      		temp=heap[i];
+       		heap[i]=heap[i/2];
+      		heap[i/2]=temp;
+       		i=i/2;
+   		}
+   }
+	insert2(int heap1[20],int x1)
+	{
+ 	   
+	 	n=heap1[0]; 
+   		heap1[n+1]=x1;
+   		heap1[0]=n+1;
+  
+   		upadjust2(heap1,n+1);
+	}
+	void upadjust2(int heap1[],int)
+	{
+	
+    	while(i>1&&heap1[i]<heap1[i/2])
+    	{
+	    	temp1=heap1[i];
+	        heap1[i]=heap1[i/2];
+	        heap1[i/2]=temp1;
+	        i=i/2;
+    	}
+	}
+	void minh()
+	{
+		
+	   cout<<"\n max marks"<<heap[1]<<endl;
+	   
+	   for(i=0;i<=n1;i++)
+	   {
+	      cout<<"\n"<<heap[i];
+		}
+	}
+	void maxh()
+	{
+		cout<<"\n min marks"<<heap1[1]<<endl;
+	
+	    for(i=0;i<=n1;i++)
+	    { 
+	       cout<<"\n"<<heap1[i]; 
+		}
+
+	}
+};
+int main()
+{
+	Heap h;
+	
+	h.getdata();
+		
+	h.minh();
+	h.maxh();
+	return 0;
+	
+}
+   
+    
+   
